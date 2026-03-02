@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import json
 import datetime
@@ -108,11 +109,11 @@ class ProcessData:
             m = (total_seconds % 3600) // 60
             s = total_seconds % 60
             if h > 0:
-                return f'{h}Ð¡Ê±{m}·Ö{s}Ãë'
+                return f'{h}å°æ—¶{m}åˆ†{s}ç§’'
             elif m > 0:
-                return f'{m}·Ö{s}Ãë'
+                return f'{m}åˆ†{s}ç§’'
             else:
-                return f'{s}Ãë'
+                return f'{s}ç§’'
         except:
             return str(hours)
 
@@ -159,7 +160,7 @@ class ProcessData:
         self.batches = []
         self.has_decimal = False
         if add_sample:
-            self.batches.append({'batch_id': 'ÑùÆ¬', 'value': 1.0})
+            self.batches.append({'batch_id': 'æ ·ç‰‡', 'value': 1.0})
         self.last_liquid_change_datetime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.liquid_change_reminded = False
         self.liquid_change_blocked = False
@@ -207,18 +208,18 @@ class ProcessData:
     def check_liquid_change_reminder(self):
         messages = []
         if self.over_target_upper:
-            messages.append(f'Æ¬ÊýÒÑ´ïÉÏÏÞ ({self.format_number(self.UPPER_LIMIT)})')
+            messages.append(f'ç‰‡æ•°å·²è¾¾ä¸Šé™ ({self.format_number(self.UPPER_LIMIT)})')
         if self.hour_over_target:
             h = self.format_hours(self.current_hour_count)
             t = self.format_hours(self.HOUR_TARGET)
-            messages.append(f'Ê±¼äÒÑ´ïÄ¿±ê ({h}/{t})')
+            messages.append(f'æ—¶é—´å·²è¾¾ç›®æ ‡ ({h}/{t})')
         if self.over_target_upper or self.hour_over_target:
-            return 'Ç¿ÖÆ', 'ÇëÁ¢¼´»»Òº£¡\n' + '\n'.join(messages)
+            return 'å¼ºåˆ¶', 'è¯·ç«‹å³æ¢æ¶²ï¼\n' + '\n'.join(messages)
         if self.total >= self.LOWER_LIMIT and self.total < self.TARGET:
             if not self.liquid_change_reminded:
                 self.liquid_change_reminded = True
                 self.save_data()
-            return 'ÌáÐÑ', f'Æ¬Êý: {self.format_number(self.total)}/{self.format_number(self.TARGET)}'
+            return 'æé†’', f'ç‰‡æ•°: {self.format_number(self.total)}/{self.format_number(self.TARGET)}'
         self.liquid_change_reminded = False
         return None, None
 
@@ -226,4 +227,5 @@ class ProcessData:
         return self.over_target_upper or self.below_target_lower or self.hour_over_target
 
     def can_undo(self):
+
         return len(self.operation_stack) > 0
