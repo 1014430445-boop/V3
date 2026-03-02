@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 import os
 
 def get_data_dir(app):
-    """获取应用私有数据目录"""
+    """鑾峰彇搴旂敤绉佹湁鏁版嵁鐩綍"""
     return app.user_data_dir
