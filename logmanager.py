@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import json
 import csv
@@ -30,7 +31,7 @@ class LogManager:
     def add_log_entry(self, entry):
         self.log_entries.append(entry)
         if len(self.log_entries) > 1000:
-            # ¹éµµ
+            # å½’æ¡£
             self.save_history_logs(self.log_entries[:100])
             self.log_entries = self.log_entries[-900:]
         self.save_logs()
@@ -53,7 +54,7 @@ class LogManager:
         try:
             with open(file_path, 'w', newline='', encoding='utf-8-sig') as f:
                 writer = csv.writer(f)
-                writer.writerow(['Ê±¼ä', 'Éè±¸ºÅ', '¹¤ÒÕÀàĞÍ', 'Åú´ÎºÅ', 'Æ¬Êı', 'ÀÛ¼ÆÆ¬Êı'])
+                writer.writerow(['æ—¶é—´', 'è®¾å¤‡å·', 'å·¥è‰ºç±»å‹', 'æ‰¹æ¬¡å·', 'ç‰‡æ•°', 'ç´¯è®¡ç‰‡æ•°'])
                 for row in logs:
                     timestamp = row.get('timestamp', '')
                     device_id = row.get('device_id', '')
@@ -64,7 +65,7 @@ class LogManager:
                         batch_id, pieces = str(value).split(':', 1)
                     else:
                         batch_id, pieces = value, ''
-                    # ¸ñÊ½»¯ÀÛ¼Æ
+                    # æ ¼å¼åŒ–ç´¯è®¡
                     try:
                         tf = float(total)
                         total_formatted = str(int(tf)) if tf == int(tf) else f'{tf:.2f}'
@@ -72,4 +73,5 @@ class LogManager:
                         total_formatted = str(total)
                     writer.writerow([timestamp, device_id, process_type, batch_id, pieces, total_formatted])
         except Exception as e:
-            print(f'µ¼³öÊ§°Ü: {e}')
+
+            print(f'å¯¼å‡ºå¤±è´¥: {e}')
