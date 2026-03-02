@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
@@ -11,16 +12,16 @@ class Notepad(BoxLayout):
         self.data_dir = data_dir
         self.notes_file = os.path.join(data_dir, 'notepad_notes.txt')
 
-        # ±êÌâºÍ°´Å¥
+        # æ ‡é¢˜å’ŒæŒ‰é’®
         top = BoxLayout(size_hint_y=0.15)
-        top.add_widget(Label(text='Ğ´×Ö°å', size_hint_x=0.3))
-        btn_save = Button(text='±£´æ', size_hint_x=0.2)
+        top.add_widget(Label(text='å†™å­—æ¿', size_hint_x=0.3))
+        btn_save = Button(text='ä¿å­˜', size_hint_x=0.2)
         btn_save.bind(on_press=self.save_notes)
         top.add_widget(btn_save)
-        btn_clear = Button(text='Çå¿Õ', size_hint_x=0.2)
+        btn_clear = Button(text='æ¸…ç©º', size_hint_x=0.2)
         btn_clear.bind(on_press=self.clear_notes)
         top.add_widget(btn_clear)
-        btn_load = Button(text='¼ÓÔØ', size_hint_x=0.3)
+        btn_load = Button(text='åŠ è½½', size_hint_x=0.3)
         btn_load.bind(on_press=self.load_file)
         top.add_widget(btn_load)
         self.add_widget(top)
@@ -49,5 +50,6 @@ class Notepad(BoxLayout):
         self.text_input.text = ''
 
     def load_file(self, instance):
-        # ¼òÒ×ÎÄ¼şÑ¡ÔñÆ÷£¨¼ò»¯£¬Ê¹ÓÃ¹Ì¶¨Â·¾¶£©
+        # ç®€æ˜“æ–‡ä»¶é€‰æ‹©å™¨ï¼ˆç®€åŒ–ï¼Œä½¿ç”¨å›ºå®šè·¯å¾„ï¼‰
+
         pass
